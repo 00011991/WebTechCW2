@@ -94,9 +94,21 @@ router.route('/post/:id')
     })
 
 router.route('/post/edit/:id')
-    .get(async (req, res) => {
-        const post = await Post.findById({ _id: req.params.id })
+    .get(async (req, res, next) => {
+  try{
+     const post = await Post.findById({ _id: req.params.id })
+        
+        if (!post) {
+          console.log('post is null')
+                req.flash('error', "Post Not Found")
+                throw new Error("Post Not Found")
+            }
         var err = req.session.err;
         res.render('editPost', { post, err })
+    
+  }catch(err){
+    next(err)
+  }
+       
     })
 module.exports = router;
