@@ -10,7 +10,7 @@ is an app where user can store memories ( image with some title and description)
 4. open in browser http://localhost:9000 
 ### Note app requires internet connection because database is in cloud
 
-## roject structure
+## Project structure
 
 index.js is main server file
 
