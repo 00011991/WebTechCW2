@@ -44,7 +44,7 @@ app.use((err, req, res, next) => {
 
   console.log(err)
 
-  res.render('error')
+  res.render('error',{error:err})
 });
 
 
