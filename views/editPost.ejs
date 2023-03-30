@@ -1,0 +1,31 @@
+<% layout('boilerplate') -%>
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="/post/<%=post._id%>?_method=PUT" method="post" enctype="multipart/form-data" >
+            <div class="mb-3">
+                <img id="imageBox" src="../../uploads/<%=post.path%>" class="card-img-top my-2" alt="">
+                <label  for="exampleInputEmail1" class="form-label">Post Title</label>
+                <input value="<%=post.title%>" name="title" type="text" class="form-control <%= err && err.errors.title && 'is-invalid'%>" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div class="invalid-feedback">
+                   <p> Title is required</p>
+                </div>
+            </div>
+           
+            <div class="mb-3 ">
+                <label class="form-check-label" for="exampleCheck1">Post Description</label>
+                <input value="<%=post.desc%>" name="desc" 
+                type="text" 
+                class="form-control <%= err && err.errors.desc && 'is-invalid'%>" id="exampleCheck1">
+                <div class="invalid-feedback">
+                    <p>Description is required</p>
+                </div>
+            </div>
+            <div class="mb-3 ">
+                
+                <label for="image" class="form-label">Select Image</label>
+                <input name="image" onchange="handleFileChange" class="form-control form-control-lg" id="image" type="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<% layout('boilerplate') -%>
+<div class="row">
+    <div class="col-6 offset-3">
+        
+         
+           
+       
+         
+        <form id="newForm" action="/new" method="post" enctype="multipart/form-data" >
+            <div class="mb-3">
+               
+                <label for="Title" class="form-label">Post Title</label>
+                <input name="title" type="text" class="form-control <%= err && err.errors.title && 'is-invalid'%>" id="Title" aria-describedby="emailHelp" >
+                    <div class="invalid-feedback">
+                        Title is required
+                    </div>
+            </div>
+           <div class="mb-3">
+                <label class="form-check-label" for="Description">Post Description</label>
+                <input name="desc" type="text" class="form-control  <%= err && err.errors.desc && 'is-invalid'%>" id="Description" >
+               
+               
+                <div class="invalid-feedback">
+                    <p>Description is required</p>
+                </div>
+           </div>
+                
+            <div class="form-control mb-3 ">
+                
+                <label for="image" class="form-label">Select Image</label>
+                <input name="image" onchange="handleFileChange" class="form-control form-control-lg" id="image" type="file">
+            </div>
+                   
+            
+            
+            <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+        </form>
+       
+    </div>
+</div>
