@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride('_method'))
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "views"));
 
 var session = require('express-session');
 app.use(session({ secret: 'mySecret', resave: false, saveUninitialized: false }));
