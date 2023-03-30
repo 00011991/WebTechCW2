@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node index",
     "dev": "nodemon index"
+  },"engines": {
+    "node": "14.*"
   },
   "keywords": [],
   "author": "",
