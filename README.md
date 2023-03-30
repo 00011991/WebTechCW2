@@ -1,6 +1,6 @@
 # WebTechCW2
 https://maize-steep-fedora.glitch.me/
-
+https://github.com/00011991/WebTechCW2
 
 ## Blog 
 is an app where user can store memories ( image with some title and description). user is able to create, update, view content and delete memories(posts)
