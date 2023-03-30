@@ -32,3 +32,18 @@ router.route('/')
 
             res.render("index", { posts })
         })
+router.route('/new')
+    .get((req, res) => {
+        var err = req.session.err;
+        res.render('newPost', { err })
+    })
+    .post(upload.single('image'), async (req, res, next) => {
+        try {
+            const post = new Post({ ...req.body, path: req.file ? req.file.filename : "" })
+            await post.save()
+            res.redirect('/')
+        } catch (error) {
+            next(error)
+        }
+
+    })
