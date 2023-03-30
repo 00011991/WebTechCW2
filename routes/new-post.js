@@ -48,6 +48,38 @@ router.route('/new')
 
     })
 
+router.route('/post/:id')
+    .get(async (req, res) => {
+        const post = await Post.findById({ _id: req.params.id })
+        res.render('postDetails', { post })
+    })
+    .delete(async (req, res) => {
+        const post = await Post.findByIdAndDelete(req.params.id)
+        post.path.length !== 0 && await deleteFile(`public/uploads/${post.path}`)
+        res.redirect(`/`)
+    })
+    .put(upload.single('image'), async (req, res) => {
+        const { id } = req.params;
+        const { title, desc } = req.body
+        const post = await Post.findById(id);
+        post.title = title;
+        post.desc = desc;
+        if (req.file) {
+            if (post.path.length > 0) {
+                await deleteFile(`public/uploads/${post.path}`);
+            }
+            post.path = req.file.filename;
+        }
+        await post.save();
+        res.redirect(`/post/${req.params.id}`)
+    })
+
+router.route('/post/edit/:id')
+    .get(async (req, res) => {
+        const post = await Post.findById({ _id: req.params.id })
+        res.render('editPost', { post })
+    })
+
 
 
 module.exports = router;
