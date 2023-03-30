@@ -30,3 +30,19 @@ app.use(session({ secret: 'mySecret', resave: false, saveUninitialized: false })
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use('/', router)
+
+
+app.use((err, req, res, next) => {
+  backURL = req.header('Referer') || '/';
+  res.locals.error = err;
+  console.log(res.locals.error)
+  req.session.err = err
+  res.redirect(backURL)
+});
+
+
+
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+})
